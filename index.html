@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vaishanvi Biryani Hotel</title>
+  <meta name="description" content="Vaishanvi Biryani Hotel - Authentic Biryani. Order online, view menu, gallery and contact." />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Reset & Base ---------- */
+    :root{
+      --accent:#c62828; /* deep red */
+      --accent-2:#ffb300; /* warm yellow */
+      --dark:#1b1b1b;
+      --muted:#666;
+      --card:#fff7f6;
+      --glass: rgba(255,255,255,0.06);
+      --radius:12px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Montserrat', system-ui, Arial, sans-serif;
+      color:var(--dark);
+      background: linear-gradient(180deg,#fff 0%, #fff8f6 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ---------- Header ---------- */
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:transparent}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#8e0000);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:'Playfair Display';font-size:18px;box-shadow:0 6px 18px rgba(198,40,40,0.18)}
+    .brand h1{font-family:'Playfair Display';font-size:18px;line-height:1;color:var(--dark)}
+    .brand p{font-size:12px;color:var(--muted)}
+
+    .nav{display:flex;gap:18px;align-items:center}
+    .nav a{padding:8px 12px;border-radius:8px;font-weight:600}
+    .nav a.cta{background:var(--accent);color:white}
+
+    .hamb{display:none;border:none;background:none;font-size:22px}
+
+    /* ---------- Hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;padding:28px;align-items:center}
+    .hero-left{padding:18px}
+    .eyebrow{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;padding:6px 10px;border-radius:20px;font-weight:700;font-size:13px}
+    .headline{font-family:'Playfair Display';font-size:38px;margin-top:14px;color:var(--dark)}
+    .lead{margin-top:12px;color:var(--muted);max-width:58ch}
+    .hero-cta{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:10px;font-weight:700;border:none;cursor:pointer}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-outline{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+
+    .hero-right{background:linear-gradient(180deg, rgba(198,40,40,0.06), rgba(255,179,64,0.02));padding:18px;border-radius:18px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .dish{display:flex;gap:12px;align-items:center}
+    .dish img{width:96px;height:72px;object-fit:cover;border-radius:10px}
+
+    /* ---------- Menu Section ---------- */
+    section{padding:28px 20px}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+    .filters{display:flex;gap:8px}
+    .chip{padding:8px 12px;border-radius:20px;border:1px solid #eee;cursor:pointer}
+    .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .menu-item{background:white;border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04);display:flex;gap:12px;align-items:center}
+    .price{margin-left:auto;font-weight:800;color:var(--accent)}
+
+    /* ---------- Gallery ---------- */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+
+    /* ---------- About / Contact ---------- */
+    .two-col{display:grid;grid-template-columns:1fr 420px;gap:18px}
+    .contact-card{background:white;padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    form .row{display:flex;gap:8px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6}
+
+    /* ---------- Footer ---------- */
+    footer{padding:20px 20px;margin-top:20px;border-top:1px dashed #eee;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 1fr}
+      .menu-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:760px){
+      .hero{grid-template-columns:1fr;}
+      .hero-right{order:2}
+      .hamb{display:block}
+      .nav{display:none}
+      .menu-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
+    }
+
+    /* Small tweaks */
+    .badge{background:var(--accent);color:white;padding:6px 8px;border-radius:8px;font-weight:700}
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+
+    /* Cart modal */
+    .modal{position:fixed;right:18px;bottom:18px;background:linear-gradient(180deg,white,#fff);padding:12px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.14);width:320px;max-width:90%;display:none}
+    .cart-list{max-height:240px;overflow:auto}
+    .flex{display:flex;gap:8px;align-items:center}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">V</div>
+      <div>
+        <h1>Vaishanvi Biryani Hotel</h1>
+        <p class="muted">Authentic Hyderabadi flavours • Open: 11:00 - 23:00</p>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="cta" id="orderNow">Order Now</a>
+    </nav>
+
+    <button class="hamb" id="hambBtn">☰</button>
+  </header>
+
+  <!-- Mobile nav (hidden by default) -->
+  <div id="mobileNav" style="display:none;padding:12px 20px;">
+    <a href="#menu" onclick="toggleMobile()">Menu</a><br>
+    <a href="#gallery" onclick="toggleMobile()">Gallery</a><br>
+    <a href="#about" onclick="toggleMobile()">About</a><br>
+    <a href="#contact" onclick="toggleMobile()">Contact</a><br>
+    <a href="#" id="orderNowMobile" onclick="toggleMobile()">Order Now</a>
+  </div>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <span class="eyebrow">Best Seller</span>
+        <h2 class="headline">Taste the Real <span style="color:var(--accent);">Biryani</span> at Vaishanvi</h2>
+        <p class="lead">Home of aromatic spices, slow-cooked dum biryani and flavorful gravies. Fresh ingredients, traditional recipes and fast deliveries.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" id="orderNow2">Order Online</button>
+          <button class="btn btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">View Menu</button>
+        </div>
+        <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+          <div class="card dish">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect fill='%23f3c2b2' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='20' fill='%23622'>Biryani</text></svg>" alt="biryani">
+            <div>
+              <strong>Hyderabadi Biryani</strong>
+              <div class="muted">Slow-cooked, layered with saffron & ghee</div>
+            </div>
+          </div>
+          <div class="card dish">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><rect fill='%23ffe2b3' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='20' fill='%23622'>Kebab</text></svg>" alt="kebab">
+            <div>
+              <strong>Chicken Kebab</strong>
+              <div class="muted">Charcoal-grilled, juicy & tender</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div><strong>Order Summary</strong><div class="muted" style="font-size:13px">No commitment — try test order</div></div>
+          <div class="badge">Free delivery over ₹500</div>
+        </div>
+        <div class="card" style="margin-bottom:10px">
+          <div style="display:flex;gap:12px;align-items:center">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='120'><rect fill='%23ffd9d9' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='16' fill='%23622'>Chef's Special</text></svg>" alt="chef">
+            <div>
+              <strong>Vaishanvi Special Biryani</strong>
+              <div class="muted">₹249</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <strong>Popular</strong>
+          <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+            <div class="dish"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='80'><rect fill='%23ffd' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='14' fill='%23622'>Veg Biryani</text></svg>"> <div>Veg Biryani <div class="muted">₹179</div></div></div>
+            <div class="dish"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='80'><rect fill='%23f7e7e7' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='14' fill='%23622'>Mutton Biryani</text></svg>"> <div>Mutton Biryani <div class="muted">₹329</div></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu">
+      <div class="section-title">
+        <h3>Our Menu</h3>
+        <div class="filters">
+          <div class="chip" data-filter="all">All</div>
+          <div class="chip" data-filter="veg">Veg</div>
+          <div class="chip" data-filter="nonveg">Non-Veg</div>
+          <div class="chip" data-filter="rice">Biryani</div>
+        </div>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+        <!-- Menu items will be injected by JS -->
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <div class="section-title">
+        <h3>Gallery</h3>
+        <div class="muted">Fresh shots of our specialties</div>
+      </div>
+      <div class="gallery" id="galleryGrid">
+        <!-- sample images -->
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect fill='%23ffd9d9' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='28' fill='%23622'>Biryani Bowl</text></svg>" alt="biryani">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect fill='%23fff2d6' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='28' fill='%23622'>Kebab Plate</text></svg>" alt="kebab">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect fill='%23f7e7ff' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='28' fill='%23622'>Dessert</text></svg>" alt="dessert">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect fill='%23eaffea' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='28' fill='%23622'>Spices</text></svg>" alt="spices">
+      </div>
+    </section>
+
+    <!-- About & Contact -->
+    <section id="about">
+      <div class="section-title"><h3>About Us</h3><div class="muted">Our story & values</div></div>
+      <div class="two-col">
+        <div>
+          <p>Vaishanvi Biryani Hotel began as a family-run kitchen with a mission: to serve aromatic and soulful biryani to every table. We use authentic spices, traditional dum techniques and fresh local produce.</p>
+          <ul style="margin-top:12px;list-style:disc;padding-left:20px;color:var(--muted)">
+            <li>Fresh ingredients, no preservatives</li>
+            <li>Customizable spice levels</li>
+            <li>Contactless delivery & hygienic packing</li>
+          </ul>
+        </div>
+
+        <aside class="contact-card">
+          <strong>Contact & Location</strong>
+          <div class="muted" style="font-size:13px;margin-top:6px">123, Biryani Street, Vaishanvi Nagar</div>
+          <div style="margin-top:10px">Phone: <a href="tel:+911234567890">+91 12345 67890</a></div>
+          <div style="margin-top:8px">Email: <a href="mailto:order@vaishanvibiryani.com">order@vaishanvibiryani.com</a></div>
+          <div style="margin-top:12px"><button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Table</button></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title"><h3>Contact / Feedback</h3><div class="muted">Send us a message</div></div>
+      <div class="contact-card">
+        <form id="contactForm">
+          <div class="row">
+            <input type="text" id="name" placeholder="Your name" required>
+            <input type="tel" id="phone" placeholder="Phone" required>
+          </div>
+          <div style="margin-top:8px"><input type="email" id="email" placeholder="Email (optional)"></div>
+          <div style="margin-top:8px"><textarea id="message" placeholder="Message" rows="4"></textarea></div>
+          <div style="margin-top:10px"><button class="btn btn-primary" type="submit">Send Message</button></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Cart / Order Modal -->
+  <div class="modal" id="cartModal" aria-hidden="true">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong>Cart</strong><button onclick="toggleCart()">✕</button></div>
+    <div class="cart-list" id="cartList"></div>
+    <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center"><strong>Total</strong><strong id="cartTotal">₹0</strong></div>
+    <div style="margin-top:10px"><button class="btn btn-primary" onclick="checkout()">Checkout</button></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>© <span id="year"></span> Vaishanvi Biryani Hotel</div>
+    <div class="muted">Made with ❤️ • Call to order: <a href="tel:+911234567890">+91 12345 67890</a></div>
+  </footer>
+
+  <script>
+    // ---------- Data ----------
+    const menuData = [
+      {id:1,name:'Hyderabadi Chicken Biryani', price:249, tags:['nonveg','rice']},
+      {id:2,name:'Veg Biryani', price:179, tags:['veg','rice']},
+      {id:3,name:'Mutton Biryani', price:329, tags:['nonveg','rice']},
+      {id:4,name:'Paneer Kebab', price:149, tags:['veg']},
+      {id:5,name:'Chicken Kebab', price:199, tags:['nonveg']},
+      {id:6,name:'Raita', price:39, tags:['veg']},
+      {id:7,name:'Gulab Jamun', price:59, tags:['veg']},
+      {id:8,name:'Kheer', price:69, tags:['veg']}
+    ];
+
+    // ---------- Init ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const menuGrid = document.getElementById('menuGrid');
+    const galleryGrid = document.getElementById('galleryGrid');
+
+    function renderMenu(list){
+      menuGrid.innerHTML = '';
+      list.forEach(item =>{
+        const node = document.createElement('div');
+        node.className = 'menu-item';
+        node.innerHTML = `
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='140'><rect fill='%23f9efe9' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family="Montserrat" font-size='16' fill='%23622'>${encodeURIComponent(item.name)}</text></svg>" alt="${item.name}" style="width:90px;height:70px;border-radius:8px;object-fit:cover">
+          <div>
+            <strong>${item.name}</strong>
+            <div class="muted" style="font-size:13px">${item.tags.join(', ')}</div>
+          </div>
+          <div class="price">₹${item.price}</div>
+          <div style="margin-left:8px"><button class="btn btn-outline" onclick="addToCart(${item.id})">Add</button></div>
+        `;
+        menuGrid.appendChild(node);
+      });
+    }
+
+    // initial render
+    renderMenu(menuData);
+
+    // ---------- Filters ----------
+    document.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        document.querySelectorAll('.chip').forEach(c=>c.style.borderColor='#eee');
+        chip.style.borderColor='var(--accent)';
+        const f = chip.dataset.filter;
+        if(f==='all') renderMenu(menuData);
+        else renderMenu(menuData.filter(x=>x.tags.includes(f)));
+      });
+    });
+
+    // ---------- Mobile nav toggle ----------
+    const hamb = document.getElementById('hambBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    hamb.addEventListener('click', ()=>{
+      toggleMobile();
+    });
+    function toggleMobile(){
+      mobileNav.style.display = mobileNav.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // ---------- Cart ----------
+    let cart = [];
+    function addToCart(id){
+      const item = menuData.find(m=>m.id===id);
+      const found = cart.find(c=>c.id===id);
+      if(found) found.qty++;
+      else cart.push({id:item.id,name:item.name,price:item.price,qty:1});
+      showCart();
+      openCart();
+    }
+    function showCart(){
+      const list = document.getElementById('cartList');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach(ci=>{
+        total += ci.price*ci.qty;
+        const el = document.createElement('div');
+        el.className='flex';
+        el.style.justifyContent='space-between';
+        el.style.padding='6px 0';
+        el.innerHTML = `<div>${ci.name} <small class='muted'>x${ci.qty}</small></div><div>₹${ci.price*ci.qty}</div>`;
+        list.appendChild(el);
+      });
+      document.getElementById('cartTotal').textContent = '₹'+total;
+    }
+    function toggleCart(){
+      const c = document.getElementById('cartModal');
+      c.style.display = c.style.display === 'none' || c.style.display === '' ? 'block' : 'none';
+      c.setAttribute('aria-hidden', c.style.display === 'none');
+    }
+    function openCart(){
+      const c = document.getElementById('cartModal');
+      c.style.display='block';
+      c.setAttribute('aria-hidden','false');
+    }
+    function checkout(){
+      if(cart.length===0){ alert('Cart is empty'); return; }
+      alert('Thank you! Order placed (demo). Total: ' + document.getElementById('cartTotal').textContent);
+      cart = [];
+      showCart();
+      toggleCart();
+    }
+
+    // Wire order buttons
+    document.getElementById('orderNow').addEventListener('click', (e)=>{ e.preventDefault(); openCart(); });
+    document.getElementById('orderNow2').addEventListener('click', ()=> openCart());
+    document.getElementById('orderNowMobile').addEventListener('click', ()=> openCart());
+
+    // Contact form
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+      console.log('Contact form submitted', data);
+      alert('Thank you, ' + data.name + '! We received your message. (Demo)');
+      this.reset();
+    });
+
+    // Accessibility: close cart on escape
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ toggleCart(); mobileNav.style.display='none'; } });
+
+  </script>
+</body>
+</html>
